@@ -26,7 +26,7 @@ function extractAndApplyColors(imgElement) {
   document.documentElement.style.setProperty('--accent-pink', darkVibrantColor);
   document.documentElement.style.setProperty('--text-muted', mutedColor);
   document.documentElement.style.setProperty('--text-light', lightMutedColor);
-
+  document.documentElement.style.setProperty('--focus-glow', darkVibrantColor);
   });
 }
 
