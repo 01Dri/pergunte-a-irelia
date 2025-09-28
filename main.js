@@ -11,7 +11,25 @@ async function main() {
   const randomSkin = getRandomValue(skins);
   const imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Irelia_${randomSkin.num}.jpg`;
   document.getElementById("splashArt").src = imageUrl;
+  document.getElementById("splashArt").onload = () => {
+    extractAndApplyColors(document.getElementById("splashArt"));
+  };
 }
+
+function extractAndApplyColors(imgElement) {
+  new Vibrant(imgElement, { quality: 10 }).getPalette((err, palette) => {
+  const vibrantColor = palette.Vibrant ? palette.Vibrant.getHex() : '#ff3366';
+  const darkVibrantColor = palette.DarkVibrant ? palette.DarkVibrant.getHex() : '#e6005c';
+  const mutedColor = palette.Muted ? palette.Muted.getHex() : '#a0a0a0';
+  const lightMutedColor = palette.LightMuted ? palette.LightMuted.getHex() : '#e0e0e0';
+  document.documentElement.style.setProperty('--primary-pink', vibrantColor);
+  document.documentElement.style.setProperty('--accent-pink', darkVibrantColor);
+  document.documentElement.style.setProperty('--text-muted', mutedColor);
+  document.documentElement.style.setProperty('--text-light', lightMutedColor);
+
+  });
+}
+
 
 function getRandomValue(values) {
   const randomIndex = Math.floor(Math.random() * values.length);
