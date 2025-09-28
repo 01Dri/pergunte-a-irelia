@@ -43,8 +43,11 @@ function question(event) {
   event.preventDefault();
   const questionOne = document.getElementById("question-one").value;
   const questionTwo = document.getElementById("question-two").value;
-  const imageResultElement = document.getElementById("irelia-result-image");
-
+  const imageErrorResultElement = document.getElementById("irelia-result-error-image");
+  const imageSuccessResultElement = document.getElementById("irelia-result-success-image");
+  imageErrorResultElement.src = "";
+  imageSuccessResultElement.src = "";
+  
   if (!questionOne || !questionTwo) {
     alert("As duas perguntas precisam estar preenchidas...")
     return;
@@ -52,8 +55,8 @@ function question(event) {
   if (questionOne === questionTwo) {
     document.getElementById("label-result").innerHTML = "Meu deus...";
     document.getElementById("question-result-value").innerHTML = "As duas perguntas são iguais seu noxiano burro!";
-    imageResultElement.src = "assets/angry-irelia.png";
-    
+    imageSuccessResultElement.src = "";
+    imageErrorResultElement.src = "assets/angry-irelia.png";
     const popupOverlay = document.getElementById('popupOverlay');
     popupOverlay.style.display = 'flex';
     setTimeout(() => {
@@ -79,8 +82,8 @@ function question(event) {
     const questionResult = getRandomValue(questions);
     document.getElementById("label-result").innerHTML = "A Irelia escolheu";
     document.getElementById("question-result-value").innerHTML = questionResult;
-    imageResultElement.src = "assets/happy-irelia.png";
-
+    imageSuccessResultElement.src = "assets/happy-irelia.png";
+    imageErrorResultElement.src = "";
   }, 2000);
 }
 
