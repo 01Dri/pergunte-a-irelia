@@ -1,3 +1,5 @@
+const globalAudio = new Audio();
+
 async function getNumSkins() {
   const response = await fetch("https://ddragon.leagueoflegends.com/cdn/15.19.1/data/en_US/champion/Irelia.json");
   const data = await response.json();
@@ -7,6 +9,8 @@ async function getNumSkins() {
 }
 
 async function main() {
+
+  // Colocar algum ester egg para a mel   
   const skins = await getNumSkins();
   const randomSkin = getRandomValue(skins);
   const imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Irelia_${randomSkin.num}.jpg`;
@@ -45,6 +49,8 @@ function showResultContainer(label, text) {
 }
 
 function closePopup() {
+  globalAudio.pause();
+  globalAudio.currentTime = 0;
   const popupOverlay = document.getElementById('popupOverlay');
   popupOverlay.classList.remove('show');
   setTimeout(() => {
@@ -63,46 +69,64 @@ function question(event) {
   const questionTwo = document.getElementById("question-two").value;
   const imageErrorResultElement = document.getElementById("irelia-result-error-image");
   const imageSuccessResultElement = document.getElementById("irelia-result-success-image");
+  const imageMelDri = document.getElementById("mel-dri-result-image");
   imageErrorResultElement.src = "";
   imageSuccessResultElement.src = "";
-  
+  imageMelDri.src = "";
+
   if (!questionOne || !questionTwo) {
     alert("As duas perguntas precisam estar preenchidas...")
     return;
   }
-  if (questionOne === questionTwo) {
-    document.getElementById("label-result").innerHTML = "Meu deus...";
-    document.getElementById("question-result-value").innerHTML = "As duas perguntas são iguais seu noxiano burro!";
+
+  if (questionOne == 'mel' && questionTwo == 'dri') {
+    playAudio("assets/ionio.mp3", 0.10);
+    showMessageOnPopup("De Dri:", "Eu te amo muitooo!!")
+    showPopup();
+    imageErrorResultElement.src = "";
     imageSuccessResultElement.src = "";
-    imageErrorResultElement.src = "assets/angry-irelia.png";
-    const popupOverlay = document.getElementById('popupOverlay');
-    popupOverlay.style.display = 'flex';
-    setTimeout(() => {
-        popupOverlay.classList.add('show');
-    }, 10);
+    imageMelDri.src = "assets/mel_dri.jpg";
     return;
   }
+  if (questionOne === questionTwo) {
+    showMessageOnPopup("Meu deus...", "As duas perguntas são iguais seu noxiano burro!")
+    imageSuccessResultElement.src = "";
+    imageErrorResultElement.src = "assets/angry-irelia.png";
+    showPopup();
+    return;
+  }
+  
+  showMessageOnPopup("Pensando...", "");
+  showPopup();
+  playAudio("assets/r_irelia.mp3", 0.10)
+  setTimeout(() => {
+    const questions = [questionOne, questionTwo];
+    const questionResult = getRandomValue(questions);
+    showMessageOnPopup("A Irelia escolheu", questionResult)
+    imageSuccessResultElement.src = "assets/happy-irelia.png";
+    imageErrorResultElement.src = "";
+  }, 2000);
+}
 
+function showMessageOnPopup(title, message) {
+    document.getElementById("label-result").innerHTML = title;
+    document.getElementById("question-result-value").innerHTML = message;
+}
+
+function showPopup() {
   const popupOverlay = document.getElementById('popupOverlay');
   popupOverlay.style.display = 'flex';
   setTimeout(() => {
     popupOverlay.classList.add('show');
   }, 10);
-  
-  document.getElementById("label-result").innerHTML = "Pensando...";
-  document.getElementById("question-result-value").innerHTML = "";
-  var audio = new Audio('assets/r_irelia.mp3');
-  audio.volume = 0.10
-  audio.play();
+}
 
-  setTimeout(() => {
-    const questions = [questionOne, questionTwo];
-    const questionResult = getRandomValue(questions);
-    document.getElementById("label-result").innerHTML = "A Irelia escolheu";
-    document.getElementById("question-result-value").innerHTML = questionResult;
-    imageSuccessResultElement.src = "assets/happy-irelia.png";
-    imageErrorResultElement.src = "";
-  }, 2000);
+function playAudio(src, vol) {
+  globalAudio.pause();
+  globalAudio.currentTime = 0;
+  globalAudio.src = src;
+  globalAudio.volume = vol
+  globalAudio.play();
 }
 
 main();
