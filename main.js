@@ -1,4 +1,10 @@
 const globalAudio = new Audio();
+const OPTIONS_LIMIT = 3
+var questionsAdded = 0;
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateMoreOptionsButtonStateToAllow();
+});
 
 async function getNumSkins() {
   const response = await fetch("https://ddragon.leagueoflegends.com/cdn/15.19.1/data/en_US/champion/Irelia.json");
@@ -100,7 +106,8 @@ function question(event) {
   showPopup();
   playAudio("assets/r_irelia.mp3", 0.10)
   setTimeout(() => {
-    const questions = [questionOne, questionTwo];
+    let questions = [questionOne, questionTwo];
+    questions = questions.concat(getMoreQuestionsValue())
     const questionResult = getRandomValue(questions);
     showMessageOnPopup("A Irelia escolheu", questionResult)
     imageSuccessResultElement.src = "assets/happy-irelia.png";
@@ -121,6 +128,85 @@ function showPopup() {
   }, 10);
 }
 
+function showQuestionMorePopup() {
+  var mainsQuestions = getMainQuestions();
+  if (mainsQuestions.length != 2) {
+    return;
+  }
+  const popupOverlay = document.getElementById('popupMoreOverlay');
+  popupOverlay.style.display = 'flex';
+  setTimeout(() => {
+    popupOverlay.classList.add('show');
+  }, 10);
+}
+
+function addMoreOptionField() {
+  console.log(canAddMoreOptions())
+  if (!canAddMoreOptions()) {
+    return;
+  }
+  const container = document.getElementById("more-question-result-container");
+  const actionContainer = container.querySelector(".more-question-action-container");
+  actionContainer.insertAdjacentHTML("beforebegin", `
+    <div class="question-input">
+      <input class="question-more" placeholder="Opção" required>
+    </div>
+  `);
+  questionsAdded += 1;
+  updateMoreOptions();
+}
+
+
+
+function closeMoreQuestionPopup() {
+  updateMoreOptions();
+  const popupOverlay = document.getElementById("popupMoreOverlay");
+  popupOverlay.style.display = 'none';
+}
+
+function getMoreQuestionsValue() {
+    return  [...document.querySelectorAll(".question-more")]
+    .map(input => input.value);
+}
+
+function updateMoreOptions() {
+  const questionValuesSpan = document.getElementById("more-questions-values")
+  const questionsMore = getMoreQuestionsValue();
+  questionValuesSpan.innerHTML = "Opções extras: " + questionsMore.join(",")
+}
+
+function canAddMoreOptions() {
+  var mainsQuestions = getMainQuestions();
+  if (mainsQuestions.length != 2) {
+    return false;
+  }
+  if (questionsAdded === OPTIONS_LIMIT) {
+    return false;
+  }
+  return true;
+}
+
+function getMainQuestions() {
+  const questionOne = document.getElementById("question-one").value;
+  const questionTwo = document.getElementById("question-two").value;
+  if (questionOne == ""  || questionTwo == "")  {
+    return [];
+  }
+  return [questionOne, questionTwo]
+}
+
+function updateMoreOptionsButtonStateToDisable() {
+    const btn = document.getElementById("more_options_btn");
+    btn.classList.remove("cursor-allowed");
+    btn.classList.add("cursor-blocked");
+}
+
+function updateMoreOptionsButtonStateToAllow() {
+    const btn = document.getElementById("more_options_btn");
+    btn.classList.remove("cursor-blocked");
+    btn.classList.add("cursor-allowed");
+}
+
 function playAudio(src, vol) {
   globalAudio.pause();
   globalAudio.currentTime = 0;
@@ -128,5 +214,6 @@ function playAudio(src, vol) {
   globalAudio.volume = vol
   globalAudio.play();
 }
+
 
 main();
