@@ -141,7 +141,6 @@ function showQuestionMorePopup() {
 }
 
 function addMoreOptionField() {
-  console.log(canAddMoreOptions())
   if (!canAddMoreOptions()) {
     return;
   }
@@ -165,15 +164,22 @@ function closeMoreQuestionPopup() {
 }
 
 function getMoreQuestionsValue() {
-    return  [...document.querySelectorAll(".question-more")]
-    .map(input => input.value);
+  const mainQuestions = new Set(getMainQuestions());
+  return new Set(
+    [...document.querySelectorAll(".question-more")]
+      .map(input => input.value.trim())
+      .filter(v => v !== "" && !mainQuestions.has(v))
+  );
 }
 
+
+
 function updateMoreOptions() {
-  const questionValuesSpan = document.getElementById("more-questions-values")
-  const questionsMore = getMoreQuestionsValue();
-  questionValuesSpan.innerHTML = "Opções extras: " + questionsMore.join(",")
+  const questionValuesSpan = document.getElementById("more-questions-values");
+  const questionsMore = [...getMoreQuestionsValue()];
+  questionValuesSpan.innerHTML = "Opções extras: " + questionsMore.join(", ");
 }
+
 
 function canAddMoreOptions() {
   var mainsQuestions = getMainQuestions();
