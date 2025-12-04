@@ -106,8 +106,9 @@ function question(event) {
   showPopup();
   playAudio("assets/r_irelia.mp3", 0.10)
   setTimeout(() => {
-    let questions = [questionOne, questionTwo];
-    questions = questions.concat([...getMoreQuestionsValue()])
+    const mainQuestions = getMainQuestions();
+    const moreQuestions = Array.from(getMoreQuestionsValue());
+    const questions = [...moreQuestions, ...mainQuestions];
     const questionResult = getRandomValue(questions);
     showMessageOnPopup("A Irelia escolheu", questionResult)
     imageSuccessResultElement.src = "assets/happy-irelia.png";
