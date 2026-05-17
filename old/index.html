@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pergunte a Irelia</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/icon.jpg">
+  <script src="https://cdn.jsdelivr.net/npm/node-vibrant@2.1.2/dist/vibrant.min.js"></script>
+  <script src="main.js"></script>
+
+</head>
+<body>
+
+  <div class="irelia-splash-art">
+    <div class="frame">
+      <img class="splash-art-image" id="splashArt" src="splashArtImage">
+    </div>
+  </div>
+  <div class="about-container">
+    <h1>Pergunte a Irelia!</h1>
+    <label>Deixe a Irelia escolher por você:</label>
+  </div>
+
+  <div class="questions-container" id="questions-container">
+    <form class="form-questions">
+      <div class="question-input">
+        <input id="question-one" placeholder="Opção 1" required>
+      </div>
+      <label>vs</label>
+      <div class="question-input">
+        <input id="question-two" placeholder="Opção 2" required>
+      </div>
+      <a id="more_options_btn" onclick="showQuestionMorePopup()">Adicionar mais opções</a>
+      <div class="more-questions-values-container"> 
+        <span id="more-questions-values">Opções extras: </span>
+      </div>
+      <button id="btn-question" onclick="question(event)">Perguntar</button>
+    </form>
+  </div>
+
+  <div class="popup-more-options-overlay" id="popupMoreOverlay" style="display: none;">
+    <div class="more-question-result-container-popup" id="more-question-result-container">
+      <div class="question-input">
+        <input class="question-more" placeholder="Opção" required>
+      </div>
+
+      <div class="more-question-action-container">
+        <button id="btn-question-actions" class="btn-more-question" onclick="addMoreOptionField()">Adicionar</button>
+        <button id="btn-question-actions" class="btn-more-question" onclick="closeMoreQuestionPopup()">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="popup-overlay" id="popupOverlay" style="display: none;">
+    <div class="question-result-container-popup" id="question-result-container">
+      <button class="close-btn" id="close-popup">X</button>
+      <img src="" id="irelia-result-error-image">
+      <img src="" id="irelia-result-success-image">
+      <img src="" id="mel-dri-result-image">
+      <label id="label-result"></label>
+      <label id="question-result-value" style="color: white;"></label>
+    </div>
+  </div>
+  
+</body>
+</html>

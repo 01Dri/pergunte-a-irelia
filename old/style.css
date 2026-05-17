@@ -74,7 +74,7 @@ body {
   color: var(--text-muted);
 }
 
-.options-container {
+.questions-container {
   background-color: var(--card-dark);
   border-radius: 12px;
   padding: 30px;
@@ -85,24 +85,24 @@ body {
   margin-bottom: 20px;
 }
 
-.form-options {
+.form-questions {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.form-options label {
+.form-questions label {
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--primary-pink);
 }
 
-.option-input {
+.question-input {
   position: relative;
   width: 100%;
 }
 
-.option-input input {
+.question-input input {
   width: 100%;
   padding: 12px 15px;
   border: 1px solid var(--text-muted);
@@ -114,18 +114,18 @@ body {
   box-sizing: border-box;
 }
 
-.option-input input:focus {
+.question-input input:focus {
   outline: none;
   border-color: var(--primary-pink);
   box-shadow: 0 0 8px var(--focus-glow);
 }
 
-.option-input input::placeholder {
+.question-input input::placeholder {
   color: var(--text-muted);
   opacity: 0.7;
 }
 
-#btn-option {
+#btn-question {
   padding: 12px 20px;
   border: none;
   border-radius: 8px;
@@ -139,17 +139,17 @@ body {
   text-transform: uppercase;
 }
 
-#btn-option:hover {
+#btn-question:hover {
   background-color: var(--primary-pink);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px var(--focus-glow);
 }
 
-#btn-option:active {
+#btn-question:active {
   transform: translateY(0);
 }
 
-#btn-option-actions {
+#btn-question-actions {
   padding: 12px 10px;
   border: none;
   border-radius: 8px;
@@ -163,38 +163,27 @@ body {
   text-transform: uppercase;
 }
 
-#btn-option-actions:hover {
+#btn-question-actions:hover {
   background-color: var(--primary-pink);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px var(--focus-glow);
 }
 
-#btn-option-actions:active {
+#btn-question-actions:active {
   transform: translateY(0);
 }
 
 .close-btn {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 15px;
   background: none;
   border: none;
-  padding: 0;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  font-weight: 600;
   cursor: pointer;
-}
-
-.close-btn img {
-  width: 30px;
-  height: 30px;
-  filter: invert(1);
-}
-
-.close-btn:hover {
-  transform: none;
-}
-
-.close-btn:focus-visible {
-  outline: none;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 
@@ -212,7 +201,7 @@ body {
   backdrop-filter: blur(5px);
 }
 
-.option-result-container-popup {
+.question-result-container-popup {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -230,17 +219,17 @@ body {
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
-.popup-overlay.show .option-result-container-popup {
+.popup-overlay.show .question-result-container-popup {
   transform: scale(1);
   opacity: 1;
 }
 
-.popup-extra-options-overlay.show .extra-option-result-container-popup {
+.popup-more-options-overlay.show .more-question-result-container-popup {
   transform: scale(1);
   opacity: 1;
 }
 
-.popup-extra-options-overlay {
+.popup-more-options-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -254,17 +243,17 @@ body {
   backdrop-filter: blur(5px);
 }
 
-.extra-option-result-container-popup {
+.more-question-result-container-popup {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  padding: 50px;
+  padding: 40px;
   border-radius: 12px;
   background-color: var(--card-dark);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  max-width: 600px;
+  max-width: 450px;
   width: 90%;
   text-align: center;
   transform: scale(0.8);
@@ -277,15 +266,14 @@ body {
   height: auto;
   border-radius: 50%;
   margin-bottom: 10px;
-  margin-bottom: -50px;
-  margin-right: 10px;
+  margin-left: 25px;
 }
 
 #irelia-result-error-image {
-  width: 200px;
+  width: 150px;
   height: auto;
   border-radius: 50%;
-  margin-bottom: -10px;
+  margin-bottom: 10px;
 }
 
 #mel-dri-result-image {
@@ -301,7 +289,7 @@ body {
   color: var(--text-muted);
 }
 
-#option-result-value {
+#question-result-value {
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--primary-pink);
@@ -309,7 +297,7 @@ body {
   text-transform: uppercase;
 }
 
-.extra-options-values-container {
+.more-questions-values-container {
   margin-top: 12px;
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.03);
@@ -321,13 +309,13 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.extra-options-values-container span {
+.more-questions-values-container span {
   color: var(--text-muted);
   font-size: 0.95rem;
   font-weight: 400;
 }
 
-.extra-options-values-container .extra-item {
+.more-questions-values-container .extra-item {
   display: inline-block;
   background: linear-gradient(
     135deg,
@@ -350,7 +338,7 @@ body {
   transition: transform 0.2s ease, box-shadow 0.25s ease;
 }
 
-.extra-options-values-container .extra-item:hover {
+.more-questions-values-container .extra-item:hover {
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 0 20px var(--focus-glow);
 }
@@ -358,61 +346,6 @@ body {
 @keyframes fadeInOption {
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-.extra-option-action-container {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.extra-option-action-row {
-  display: flex;
-  gap: 8px;
-  width: 100%;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.extra-option-action-container .btn-extra-option.add-option {
-  align-self: flex-start;
-  margin-left: 0;
-  padding: 0;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 8px;
-  background-color: var(--accent-pink);
-  font-size: 0 !important;
-  overflow: hidden;
-  text-indent: -9999px;
-  position: relative;
-  cursor: pointer;
-}
-
-.extra-option-action-container .btn-extra-option.add-option:hover {
-  filter: brightness(1.1);
-}
-
-.extra-option-action-container .btn-extra-option.add-option::before {
-  content: '+';
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #ffffff;
-  position: relative;
-  text-indent: 0;
-}
-
-.extra-option-action-container .save-option {
-  align-self: center;
-  width: auto;
-  min-width: 150px;
 }
 
 

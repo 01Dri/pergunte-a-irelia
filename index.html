@@ -22,32 +22,36 @@
     <label>Deixe a Irelia escolher por você:</label>
   </div>
 
-  <div class="questions-container" id="questions-container">
-    <form class="form-questions">
-      <div class="question-input">
-        <input id="question-one" placeholder="Opção 1" required>
+  <div class="options-container" id="options-container">
+    <form class="form-options">
+      <div class="option-input">
+        <input id="option-one" placeholder="Opção 1" required>
       </div>
       <label>vs</label>
-      <div class="question-input">
-        <input id="question-two" placeholder="Opção 2" required>
+      <div class="option-input">
+        <input id="option-two" placeholder="Opção 2" required>
       </div>
-      <a id="more_options_btn" onclick="showQuestionMorePopup()">Adicionar mais opções</a>
-      <div class="more-questions-values-container"> 
-        <span id="more-questions-values">Opções extras: </span>
+      <a id="extra_options_btn" onclick="showExtraOptionsPopup()">Adicionar mais opções</a>
+      <div class="extra-options-values-container"> 
+        <span id="extra-options-values">Opções extras: </span>
       </div>
-      <button id="btn-question" onclick="question(event)">Perguntar</button>
+      <button id="btn-option" onclick="askToIrelia(event)">Perguntar</button>
     </form>
   </div>
 
-  <div class="popup-more-options-overlay" id="popupMoreOverlay" style="display: none;">
-    <div class="more-question-result-container-popup" id="more-question-result-container">
-      <div class="question-input">
-        <input class="question-more" placeholder="Opção" required>
+  <div class="popup-extra-options-overlay" id="popupExtraOverlay" style="display: none;">
+    <div class="extra-option-result-container-popup" id="extra-option-result-container">
+      <button class="close-btn" id="close-popup-extra" onclick="closeExtraOptionsPopup()" aria-label="Fechar">
+        <img src="assets/new/close.svg" alt="Fechar">
+      </button>
+      <div class="option-input">
+        <input class="option-extra" placeholder="Opção" required>
       </div>
-
-      <div class="more-question-action-container">
-        <button id="btn-question-actions" class="btn-more-question" onclick="addMoreOptionField()">Adicionar</button>
-        <button id="btn-question-actions" class="btn-more-question" onclick="closeMoreQuestionPopup()">Salvar</button>
+      <div class="extra-option-action-container">
+        <div class="extra-option-action-row">
+          <button id="btn-extra-add" class="btn-extra-option add-option" onclick="addExtraOption()">Adicionar</button>
+        </div>
+        <button id="btn-option-actions" class="btn-extra-option save-option" onclick="closeExtraOptionsPopup()">Salvar</button>
       </div>
     </div>
   </div>
@@ -55,13 +59,15 @@
 
 
   <div class="popup-overlay" id="popupOverlay" style="display: none;">
-    <div class="question-result-container-popup" id="question-result-container">
-      <button class="close-btn" id="close-popup">X</button>
+    <div class="option-result-container-popup" id="option-result-container">
+      <button class="close-btn" id="close-popup">
+        <img src="assets/new/close.svg" alt="Fechar">
+      </button>
       <img src="" id="irelia-result-error-image">
       <img src="" id="irelia-result-success-image">
       <img src="" id="mel-dri-result-image">
       <label id="label-result"></label>
-      <label id="question-result-value" style="color: white;"></label>
+      <label id="option-result-value" style="color: white;"></label>
     </div>
   </div>
   
