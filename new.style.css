@@ -176,14 +176,25 @@ body {
 .close-btn {
   position: absolute;
   top: 10px;
-  right: 15px;
+  right: 10px;
   background: none;
   border: none;
-  color: var(--text-muted);
-  font-size: 1.5rem;
-  font-weight: 600;
+  padding: 0;
   cursor: pointer;
-  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.close-btn img {
+  width: 30px;
+  height: 30px;
+  filter: invert(1);
+}
+
+.close-btn:hover {
+  transform: none;
+}
+
+.close-btn:focus-visible {
+  outline: none;
 }
 
 
@@ -249,11 +260,11 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  padding: 40px;
+  padding: 50px;
   border-radius: 12px;
   background-color: var(--card-dark);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  max-width: 450px;
+  max-width: 600px;
   width: 90%;
   text-align: center;
   transform: scale(0.8);
@@ -347,6 +358,61 @@ body {
 @keyframes fadeInOption {
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+.extra-option-action-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.extra-option-action-row {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.extra-option-action-container .btn-extra-option.add-option {
+  align-self: flex-start;
+  margin-left: 0;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--accent-pink);
+  font-size: 0 !important;
+  overflow: hidden;
+  text-indent: -9999px;
+  position: relative;
+  cursor: pointer;
+}
+
+.extra-option-action-container .btn-extra-option.add-option:hover {
+  filter: brightness(1.1);
+}
+
+.extra-option-action-container .btn-extra-option.add-option::before {
+  content: '+';
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  position: relative;
+  text-indent: 0;
+}
+
+.extra-option-action-container .save-option {
+  align-self: center;
+  width: auto;
+  min-width: 150px;
 }
 
 

@@ -41,13 +41,17 @@
 
   <div class="popup-extra-options-overlay" id="popupExtraOverlay" style="display: none;">
     <div class="extra-option-result-container-popup" id="extra-option-result-container">
+      <button class="close-btn" id="close-popup-extra" onclick="closeExtraOptionsPopup()" aria-label="Fechar">
+        <img src="assets/new/close.svg" alt="Fechar">
+      </button>
       <div class="option-input">
         <input class="option-extra" placeholder="Opção" required>
       </div>
-
       <div class="extra-option-action-container">
-        <button id="btn-option-actions" class="btn-extra-option" onclick="addExtraOption()">Adicionar</button>
-        <button id="btn-option-actions" class="btn-extra-option" onclick="closeExtraOptionsPopup()">Salvar</button>
+        <div class="extra-option-action-row">
+          <button id="btn-extra-add" class="btn-extra-option add-option" onclick="addExtraOption()">Adicionar</button>
+        </div>
+        <button id="btn-option-actions" class="btn-extra-option save-option" onclick="closeExtraOptionsPopup()">Salvar</button>
       </div>
     </div>
   </div>
@@ -56,7 +60,9 @@
 
   <div class="popup-overlay" id="popupOverlay" style="display: none;">
     <div class="option-result-container-popup" id="option-result-container">
-      <button class="close-btn" id="close-popup">X</button>
+      <button class="close-btn" id="close-popup">
+        <img src="assets/new/close.svg" alt="Fechar">
+      </button>
       <img src="" id="irelia-result-error-image">
       <img src="" id="irelia-result-success-image">
       <img src="" id="mel-dri-result-image">

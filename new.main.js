@@ -36,6 +36,8 @@ async function main() {
 }
 
 
+//#region main logic
+
 function askToIrelia(event) {
     event.preventDefault();
     hideMelDriImage();
@@ -78,8 +80,8 @@ function askToIrelia(event) {
 }    
 
 
-
 function getAllOptions() {
+
   var mainOptions = getMainOptions();
   var extraOptions = Array.from(getExtraOptions());
   extraOptions = extraOptions.filter(x => {
@@ -142,13 +144,11 @@ function playAudio(src, vol) {
 }
 
 
+//#endregion main logic
 
+//#region front end related functions
 
-
-//  FRONT END
-
-
-// EXTRA OPTIONS AREAS
+//#region extra options
 
 function showExtraOptionsPopup() {
   var mainOptions = getMainOptions();
@@ -199,8 +199,9 @@ function addExtraOption() {
   updateExtraOptionField();
 }
 
-// END EXTRA OPTIONS AREAS
+//#endregion extra options
 
+//#region general
 
 
 function showMelDriImage() {
@@ -278,4 +279,7 @@ function extractAndApplyColors(imgElement) {
 }
 
 
+//#endregion general
+
+//#endregion front end related functions
 main();
