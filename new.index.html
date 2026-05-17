@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pergunte a Irelia</title>
+  <link rel="stylesheet" href="new.style.css">
+  <link rel="icon" href="assets/icon.jpg">
+  <script src="https://cdn.jsdelivr.net/npm/node-vibrant@2.1.2/dist/vibrant.min.js"></script>
+  <script src="new.main.js"></script>
+
+</head>
+<body>
+
+  <div class="irelia-splash-art">
+    <div class="frame">
+      <img class="splash-art-image" id="splashArt" src="splashArtImage">
+    </div>
+  </div>
+  <div class="about-container">
+    <h1>Pergunte a Irelia!</h1>
+    <label>Deixe a Irelia escolher por você:</label>
+  </div>
+
+  <div class="options-container" id="options-container">
+    <form class="form-options">
+      <div class="option-input">
+        <input id="option-one" placeholder="Opção 1" required>
+      </div>
+      <label>vs</label>
+      <div class="option-input">
+        <input id="option-two" placeholder="Opção 2" required>
+      </div>
+      <a id="extra_options_btn" onclick="showExtraOptionsPopup()">Adicionar mais opções</a>
+      <div class="extra-options-values-container"> 
+        <span id="extra-options-values">Opções extras: </span>
+      </div>
+      <button id="btn-option" onclick="askToIrelia(event)">Perguntar</button>
+    </form>
+  </div>
+
+  <div class="popup-extra-options-overlay" id="popupExtraOverlay" style="display: none;">
+    <div class="extra-option-result-container-popup" id="extra-option-result-container">
+      <div class="option-input">
+        <input class="option-extra" placeholder="Opção" required>
+      </div>
+
+      <div class="extra-option-action-container">
+        <button id="btn-option-actions" class="btn-extra-option" onclick="addExtraOption()">Adicionar</button>
+        <button id="btn-option-actions" class="btn-extra-option" onclick="closeExtraOptionsPopup()">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="popup-overlay" id="popupOverlay" style="display: none;">
+    <div class="option-result-container-popup" id="option-result-container">
+      <button class="close-btn" id="close-popup">X</button>
+      <img src="" id="irelia-result-error-image">
+      <img src="" id="irelia-result-success-image">
+      <img src="" id="mel-dri-result-image">
+      <label id="label-result"></label>
+      <label id="option-result-value" style="color: white;"></label>
+    </div>
+  </div>
+  
+</body>
+</html>
