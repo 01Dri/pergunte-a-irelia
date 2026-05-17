@@ -69,7 +69,7 @@ function askToIrelia(event) {
         return;
     }
     showPopup("Pensando...", "");
-    updateResultImages("assets/new/irelia-thinking-2.webp", "");
+    updateResultImages("assets/new/thinking.png", "");
     playAudio("assets/r_irelia.mp3", 0.10)
     setTimeout(() => {
         const options = getAllOptions();
