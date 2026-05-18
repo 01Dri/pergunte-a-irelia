@@ -76,6 +76,7 @@ function askToIrelia(event) {
         const optionResult = getRandomValue(options);
         showPopup("A Irelia escolheu", optionResult);
         updateResultImages("assets/new/happy-irelia-2.png", "");
+        resetOptions();
     }, 2000)
 }    
 
@@ -204,14 +205,30 @@ function addExtraOption() {
 //#region general
 
 
+function resetOptions() {
+  const mainOptionOne = document.getElementById("option-one");
+  const mainOptionTwo = document.getElementById("option-two");
+  mainOptionOne.value = "";
+  mainOptionTwo.value = "";
+  const inputs = document.querySelectorAll(".option-extra");
+  inputs.forEach(input => input.value = "");
+  currentNumExtraOptions = 0;
+  updateExtraOptionField();
+  updateExtraOptionButtonVisibility();
+}
+
 function showMelDriImage() {
   const imageMelDri = document.getElementById("mel-dri-result-image");
+  const popupOverlay = document.getElementById("popupOverlay");
   imageMelDri.src = "assets/mel_dri.jpg";
+  popupOverlay.classList.add("mel-dri-result");
 }
 
 function hideMelDriImage() {
   const imageMelDri = document.getElementById("mel-dri-result-image");
+  const popupOverlay = document.getElementById("popupOverlay");
   imageMelDri.src = "";
+  popupOverlay.classList.remove("mel-dri-result");
 }
 
 function updateResultImages(sucessImage = "", errorImage = "") {

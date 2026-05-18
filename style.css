@@ -193,6 +193,17 @@ body {
   transform: none;
 }
 
+#popupOverlay.mel-dri-result .option-result-container-popup {
+  max-width: 560px;
+  width: 95%;
+  padding: 50px 45px;
+}
+
+#popupOverlay.mel-dri-result .close-btn {
+  top: 18px;
+  right: 18px;
+}
+
 .close-btn:focus-visible {
   outline: none;
 }
